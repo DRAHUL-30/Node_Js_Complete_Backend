@@ -39,6 +39,7 @@ const service = {
       if (!user) {
         return res.status(403).send("User doesn't exists");
       }
+      console.log("in");
       const isValid = await bcrypt.compare(req.body.password, user.password);
       if (!isValid) {
         return res
