@@ -35,11 +35,7 @@ const service = {
   async loginUser(req, res) {
     try {
       const { value, error } = await loginSchema.validate(req.body);
-      // console.log(validate.error.details);
-      if (error)
-        return res.status(400).send({ Error: error.details[0].message });
-
-      const user = await mongo.users.findOne({ username: req.body.username });
+      // console.log(validate.error.details); if (error) return res.status(400).send({ Error: error.details[0].message }); const user = await mongo.users.findOne({ username: req.body.username });
       if (!user) {
         return res.status(403).send("User doesn't exists");
       }

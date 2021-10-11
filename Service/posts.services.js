@@ -18,9 +18,12 @@ const service = {
   async insertPosts(req, res) {
     try {
       console.log(req.body);
-      const { insertedId: _id } = await mongo.posts.insertOne({ ...req.body });
-      //   console.log(data);
-      res.send({ ...req.body, _id }); //_id: data.insertedId;
+      const data = await mongo.posts.insertOne({
+        ...req.body,
+        userId: req.user.userId,
+      });
+      console.log(data);
+      res.send({ ...req.body, userId: req.user.userId }); //_id: data.insertedId;
     } catch (err) {
       console.log(err);
       res.send({ error: "hello" });
